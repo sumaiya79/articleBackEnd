@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       image: {
-        type: Sequelize.BLOB
+        type: Sequelize.TEXT
       },
     });
   },

@@ -11,10 +11,9 @@ let articleRouter = require('./routes/article');
 let myConnection = require('express-myconnection');
 let cors = require('cors');
 let multer = require('multer');
-
 let app = express();
+let expressSanitizer = require('express-sanitizer');
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(cors());
@@ -22,9 +21,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static(path.join(__dirname, 'public')))
-// app.get('/', express.static(path.join(__dirname, './public')));
+app.use(expressSanitizer());
+
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
+
+
+app.use(function(req, res, next) {
+//set headers to allow cross origin request.
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

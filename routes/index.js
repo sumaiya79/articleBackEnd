@@ -1,9 +1,10 @@
-
 let express = require('express');
-let app = express();
-
-app.get('/', function(req, res) {
-    res.render('index', {title: 'My Node.js Application'})
+let router = express.Router();
+let multer = require('multer');
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
 });
 
-module.exports = app;
+
+
+module.exports = router;

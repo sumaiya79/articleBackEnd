@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         title: DataTypes.TEXT,
         description: DataTypes.TEXT,
         publishdate: DataTypes.DATE,
-        image: DataTypes.BLOB
+        image: DataTypes.TEXT
     }, {timestamps: false});
     articles.associate = function(models) {
 
