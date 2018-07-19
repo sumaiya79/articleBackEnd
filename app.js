@@ -7,7 +7,6 @@ let logger = require('morgan');
 let mysql = require('mysql');
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
-let articleRouter = require('./routes/article');
 let myConnection = require('express-myconnection');
 let cors = require('cors');
 let multer = require('multer');
@@ -40,7 +39,7 @@ app.use('/users', usersRouter);
 
 app.get('/name', function (req, res, next) {
     res.json({msg: 'This is CORS-enabled for all origins!'})
-})
+});
 
 app.use(function(req, res, next) {
   next(createError(404));
